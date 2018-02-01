@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- '6.10.0'
+branches:
+  only:
+  - master
+before_script:
+- npm install
+script:
+- gulp
+- npm run test
