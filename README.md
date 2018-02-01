@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ericdrowell/blip.png)](https://travis-ci.org/ericdrowell/blip)
+
 # blip
 
 blip is a JavaScript library that estimates memory usage of your webapp in blips.  
