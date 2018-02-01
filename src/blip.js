@@ -24,9 +24,10 @@
     }
   };
 
-  var blip = function(a) {   
-    // counts   
-    var objectCount = 0,
+  var blip = function(a) {      
+    var processedObjects = [];
+        // counts
+        objectCount = 0,
         objectKeyCount = 0,
         arrayCount = 0,
         arrayElementCount = 0,
@@ -104,6 +105,7 @@
 
         // add crumb so that we do not double count the same object by reference
         obj.__blip = true;
+        processedObjects.push(obj);
       }
     }
 
@@ -125,6 +127,7 @@
 
         // add crumb so that we do not double count the same object by reference
         arr.__blip = true;
+        processedObjects.push(arr);
       }
     }
 
@@ -145,6 +148,11 @@
 
     // start traversing
     addThing(a);
+
+    // cleanup
+    processedObjects.forEach(function(obj) {
+      delete obj.__blip;
+    });
 
     totalSize = Math.ceil(stringSize + numberSize + booleanSize);
 

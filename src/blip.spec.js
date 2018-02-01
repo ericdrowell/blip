@@ -117,6 +117,33 @@ describe('blip', function() {
         size: 24,
         formattedSize: "24 Bl"
       });
+
+    });
+    
+    it('object twice', function() {
+      var obj = {
+        a: 1,
+        b: 2
+      };
+      var b = blip(obj);
+
+      assert.equal(b.objectCount, 1);
+      assert.equal(b.numberCount, 2);
+      assert.equal(b.stringCount, 2);
+      assert.equal(b.numberSize, 8);
+      assert.equal(b.stringSize, 4);
+      assert.equal(b.size, 4 + 8);
+      assert.equal(b.formattedSize, '12 Bl');
+
+      var b = blip(obj);
+
+      assert.equal(b.objectCount, 1);
+      assert.equal(b.numberCount, 2);
+      assert.equal(b.stringCount, 2);
+      assert.equal(b.numberSize, 8);
+      assert.equal(b.stringSize, 4);
+      assert.equal(b.size, 4 + 8);
+      assert.equal(b.formattedSize, '12 Bl');
     })
 
   });

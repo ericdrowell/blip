@@ -51,9 +51,10 @@
     }
   };
 
-  var blip = function(a) {   
-    // counts   
-    var objectCount = 0,
+  var blip = function(a) {      
+    var processedObjects = [];
+        // counts
+        objectCount = 0,
         objectKeyCount = 0,
         arrayCount = 0,
         arrayElementCount = 0,
@@ -131,6 +132,7 @@
 
         // add crumb so that we do not double count the same object by reference
         obj.__blip = true;
+        processedObjects.push(obj);
       }
     }
 
@@ -152,6 +154,7 @@
 
         // add crumb so that we do not double count the same object by reference
         arr.__blip = true;
+        processedObjects.push(obj);
       }
     }
 
@@ -173,22 +176,27 @@
     // start traversing
     addThing(a);
 
+    // now cleanup
+    processedObjects.forEach(function(obj) {
+      delete obj.__blip;
+    });
+
     totalSize = Math.ceil(stringSize + numberSize + booleanSize);
 
     return {
       // counts
-      objectCount: objectCount,
-      objectKeyCount: objectKeyCount,
+      booleanCount: booleanCount,
+      numberCount: numberCount,
+      stringCount: stringCount,
       arrayCount: arrayCount,
       arrayElementCount: arrayElementCount,
-      stringCount: stringCount,
-      numberCount: numberCount,
-      booleanCount: booleanCount,
+      objectCount: objectCount,
+      objectKeyCount: objectKeyCount,
 
       // sizes
-      stringSize: stringSize,
-      numberSize: numberSize,
       booleanSize: booleanSize,
+      numberSize: numberSize,
+      stringSize: stringSize,
 
       size: totalSize,
       formattedSize: formatSize(totalSize)
