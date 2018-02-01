@@ -10,10 +10,13 @@ How big is a blip compared to a byte?
 Blips are on the same order of magnitude as a byte.  In fact, the blip library tries its best to estimate every part of a datastructure in terms of pure, theoretical bytes, irrespective of how browsers actually store the data structures.  Thus, the blip size will be somewhat close to the actual byte size in memory.  
 
 What's the blip notation?
-1Bl = 1 blilp
+
+```
+1Bl = 1 blip
 2kBl = 2 kilo blips
 3MBl = 3 mega blips
 4GBl = 4 giga blips
+```
 
 
 
