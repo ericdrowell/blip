@@ -95,5 +95,29 @@ describe('blip', function() {
       assert.equal(b.formattedSize, '12 Bl');
     });
 
+    it('README example', function() {
+      var obj = {
+        foo: 1,
+        bar: [1, 2]
+      };
+
+      assert.deepEqual(blip(obj), {
+        numberCount: 3,
+        stringCount: 2,
+        booleanCount: 0,
+        arrayCount: 1,
+        arrayElementCount: 2,
+        objectCount: 1,
+        objectKeyCount: 2,
+
+        booleanSize: 0,
+        numberSize: 12,
+        stringSize: 12,
+
+        size: 24,
+        formattedSize: "24 Bl"
+      });
+    })
+
   });
 });

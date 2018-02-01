@@ -150,18 +150,18 @@
 
     return {
       // counts
-      objectCount: objectCount,
-      objectKeyCount: objectKeyCount,
+      booleanCount: booleanCount,
+      numberCount: numberCount,
+      stringCount: stringCount,
       arrayCount: arrayCount,
       arrayElementCount: arrayElementCount,
-      stringCount: stringCount,
-      numberCount: numberCount,
-      booleanCount: booleanCount,
+      objectCount: objectCount,
+      objectKeyCount: objectKeyCount,
 
       // sizes
-      stringSize: stringSize,
-      numberSize: numberSize,
       booleanSize: booleanSize,
+      numberSize: numberSize,
+      stringSize: stringSize,
 
       size: totalSize,
       formattedSize: formatSize(totalSize)
