@@ -144,7 +144,21 @@ describe('blip', function() {
       assert.equal(b.stringSize, 4);
       assert.equal(b.size, 4 + 8);
       assert.equal(b.formattedSize, '12 Bl');
-    })
+    });
+
+    it('object cyclic parent', function() {
+      var obj = {
+        a: 1
+      };
+
+      obj.parent = obj;
+
+      var b = blip(obj);
+
+      assert.equal(b.objectCount, 1);
+      assert.equal(b.numberCount, 1);
+      assert.equal(b.stringCount, 2);
+    });
 
   });
 });
