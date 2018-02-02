@@ -14,7 +14,7 @@ Well, nothing, except that it's incredibly difficult to reliably measure a web a
 
 ### How big is a blip compared to a byte?
 
-Blips are on the same order of magnitude as a byte.  In fact, the blip library tries its best to estimate every part of a data structure in terms of pure bytes, irrespective of how browsers actually store the data structures.  Thus, the blip size will be somewhat close to the actual byte size in memory.  
+Blips are on the same order of magnitude as a byte.  In fact, the blip library uniformly estimates all parts of a data structure in bytes.  This uniform estimation, which is the same at any point in time regardless of GC events, across different browsers, defines the memory used in blips. 
 
 ### What's the blip notation?
 
