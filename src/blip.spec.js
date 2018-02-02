@@ -119,7 +119,7 @@ describe('blip', function() {
       });
 
     });
-    
+
     it('object twice', function() {
       var obj = {
         a: 1,

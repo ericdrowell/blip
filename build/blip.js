@@ -1,7 +1,7 @@
 /*
  * blip v0.0.1
  * JavaScript library for estimating object and array memory usage in the browser.
- * Release Date: 1-31-2018
+ * Release Date: 2-2-2018
  * https://github.com/ericdrowell/blip
  * Licensed under the MIT or GPL Version 2 licenses.
  *
@@ -124,15 +124,17 @@
 
         addKeys(keys);
 
-        if (len > 0) {
-          for (key in obj) {
-            addThing(obj[key]);
-          }
-        }
-
         // add crumb so that we do not double count the same object by reference
         obj.__blip = true;
         processedObjects.push(obj);
+
+        if (len > 0) {
+          for (key in obj) {
+            if (key !== '__blip') {
+              addThing(obj[key]);
+            }
+          }
+        }
       }
     }
 
@@ -144,6 +146,10 @@
         len = arr.length;
         arrayCount++;
 
+        // add crumb so that we do not double count the same object by reference
+        arr.__blip = true;
+        processedObjects.push(arr);
+
         if (len > 0) {
           arrayElementCount += len;
 
@@ -151,10 +157,6 @@
             addThing(arr[n]);
           }
         }
-
-        // add crumb so that we do not double count the same object by reference
-        arr.__blip = true;
-        processedObjects.push(obj);
       }
     }
 
@@ -176,7 +178,7 @@
     // start traversing
     addThing(a);
 
-    // now cleanup
+    // cleanup
     processedObjects.forEach(function(obj) {
       delete obj.__blip;
     });

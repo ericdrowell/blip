@@ -97,15 +97,17 @@
 
         addKeys(keys);
 
-        if (len > 0) {
-          for (key in obj) {
-            addThing(obj[key]);
-          }
-        }
-
         // add crumb so that we do not double count the same object by reference
         obj.__blip = true;
         processedObjects.push(obj);
+
+        if (len > 0) {
+          for (key in obj) {
+            if (key !== '__blip') {
+              addThing(obj[key]);
+            }
+          }
+        }
       }
     }
 
@@ -117,6 +119,10 @@
         len = arr.length;
         arrayCount++;
 
+        // add crumb so that we do not double count the same object by reference
+        arr.__blip = true;
+        processedObjects.push(arr);
+
         if (len > 0) {
           arrayElementCount += len;
 
@@ -124,10 +130,6 @@
             addThing(arr[n]);
           }
         }
-
-        // add crumb so that we do not double count the same object by reference
-        arr.__blip = true;
-        processedObjects.push(arr);
       }
     }
 
