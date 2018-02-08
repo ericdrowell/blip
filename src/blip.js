@@ -25,7 +25,7 @@
   };
 
   var blip = function(a) {      
-    var processedObjects = [];
+    var processedObjects = [],
         // counts
         objectCount = 0,
         objectKeyCount = 0,
@@ -133,19 +133,16 @@
       }
     }
 
-    function formatSize(size) {
-      if (size >= 1000000000) {
-        return (Math.round(size * 10 / 1000000000) / 10) + ' GBl';
+    function formatBytes(bytes, decimals) {
+      if(bytes === 0) {
+        return '0 Bl';
       }
-      else if (size >= 1000000) {
-        return (Math.round(size * 10 / 1000000) / 10) + ' MBl';
-      }
-      else if (size >= 1000) {
-        return (Math.round(size * 10 / 1000) / 10) + ' KBl';
-      }
-      else {
-        return (Math.round(size * 10 / 1) / 10) + ' Bl';
-      }
+       var k = 1024,
+           dm = decimals || 1,
+           sizes = ['Bl', 'KBl', 'MBl', 'GBl', 'TBl', 'PBl', 'EBl', 'ZBl', 'YBl'],
+           i = Math.floor(Math.log(bytes) / Math.log(k));
+      
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
 
     // start traversing
@@ -174,7 +171,7 @@
       stringSize: stringSize,
 
       size: totalSize,
-      formattedSize: formatSize(totalSize)
+      formattedSize: formatBytes(totalSize)
     };
   };
 

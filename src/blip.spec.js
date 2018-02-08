@@ -67,8 +67,6 @@ describe('blip', function() {
       var arr = [1, 2, 'b', 4, true, false];
       var b = blip(arr);
 
-      console.log(b);
-
       assert.equal(b.arrayCount, 1);
       assert.equal(b.numberCount, 3);
       assert.equal(b.stringCount, 1);
